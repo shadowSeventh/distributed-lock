@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * TODO 封装成接口，调用方自定义实现方案
+ */
 @WebFilter(filterName = "zookeeperPathFilter", urlPatterns = "/*")
 @Component
 public class ZookeeperPathFilter extends OncePerRequestFilter

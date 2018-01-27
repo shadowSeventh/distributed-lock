@@ -1,5 +1,9 @@
 package com.github.shadowseventh.distributed.lock.core;
 
+
+/**
+ * FIXME 加锁方式是否不予提供或只提供默认的加锁方式，拓展方式只提供加锁方式的接口约束，由调用方自定义加锁方式
+ */
 public enum LockTypeEnum {
 
     /**
