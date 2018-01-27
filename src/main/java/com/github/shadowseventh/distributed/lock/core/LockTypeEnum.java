@@ -18,7 +18,7 @@ public enum LockTypeEnum {
     CUSTOM("CUSTOM", "自定义方法"),
 
     /**
-     * 请求级别类型的锁，需要配置一个filter，拦截request，获得path以及method，根据path和method针对同一个接口的http请求加锁，
+     * 请求级别类型的锁，需要配置一个filter，拦截request，获得path、method、IP，根据path、method和IP针对同一个接口的http请求加锁，
      * 应用案例：防止浏览器多次点击，重复发出请求
      */
     REQUEST("REQUEST", "请求级别");

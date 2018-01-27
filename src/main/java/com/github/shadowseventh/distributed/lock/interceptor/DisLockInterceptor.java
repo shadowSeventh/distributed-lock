@@ -3,6 +3,7 @@ package com.github.shadowseventh.distributed.lock.interceptor;
 import com.github.shadowseventh.distributed.lock.api.DisLock;
 import com.github.shadowseventh.distributed.lock.core.LockTypeEnum;
 import com.github.shadowseventh.distributed.lock.core.MethodTypeEnum;
+import com.github.shadowseventh.distributed.lock.filter.ZookeeperPathFilter;
 import com.github.shadowseventh.distributed.lock.prop.DisLockProperties;
 import com.github.shadowseventh.distributed.lock.utils.DisLockUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -26,6 +27,9 @@ public class DisLockInterceptor {
 
     @Autowired
     private ZookeeperLockRegistry zkLockRegistry;
+
+    @Autowired
+    private ZookeeperPathFilter filter;
 
     /**
      * 拦截器拦截到注解后，主要执行的方法
@@ -65,10 +69,14 @@ public class DisLockInterceptor {
     }
 
     public Object parameterProceed(ProceedingJoinPoint pjp) throws Throwable {
+
         return pjp.proceed();
     }
 
     public Object requestProceed(ProceedingJoinPoint pjp) throws Throwable {
+        String path = filter.getUrl() + "_" + filter.getMethod() + "_" + filter.getIp();
+        long waitLockTime = properties.getWaitLockTime();
+        lockAndExec(path, waitLockTime, pjp);
         return pjp.proceed();
     }
 

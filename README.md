@@ -33,4 +33,4 @@ distributed.lock:
 
 `LockTypeEnum.CUSTOM` : 自定义方法类型的锁，需要在同一个类中声明自定义获得锁的方法名，而且方法需要返回一个String,需要配置`DisLock lockMethod()`  ------ 待实现
 
-`LockTypeEnum.REQUEST` : 请求级别类型的锁，需要配置一个`filter`，拦截`request`，获得`path`以及`method`，根据`path`和`method`针对同一个接口的`http`请求加锁,应用案例：防止浏览器多次点击，重复发出请求  ------ 待实现
+`LockTypeEnum.REQUEST` : 请求级别类型的锁，需要配置一个`filter`，拦截`request`，获得`path`、`method`以及`IP`，根据`path`、`method`和`IP`针对同一个IP，同一个接口的`http`请求加锁,应用案例：  ------ 待实现
